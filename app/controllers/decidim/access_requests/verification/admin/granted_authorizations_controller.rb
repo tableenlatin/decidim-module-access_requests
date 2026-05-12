@@ -90,10 +90,12 @@ module Decidim
           end
 
           def authorization
-            @authorization ||= Authorization.find_by(
-              id: params[:id],
+            return @authorization if defined?(@authorization)
+
+            @authorization = Decidim::Verifications::Authorizations.new(
+              organization: current_organization,
               name: verification_manifest.name
-            )
+            ).query.find_by(id: params[:id])
           end
 
           def load_authorization
@@ -104,7 +106,7 @@ module Decidim
           end
 
           def load_user
-            @user = User.find(params[:user_id])
+            @user = current_organization.users.find(params[:user_id])
           end
         end
       end

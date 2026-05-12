@@ -17,10 +17,16 @@ module Decidim
         end
 
         def load_seed
-          # Enable the `:access_requests` authorization
+          # Enable the authorization workflows provided by this engine.
           org = Decidim::Organization.first
-          org.available_authorizations << :access_requests
-          org.save!
+          return unless org
+
+          workflow_names = Decidim.authorization_workflows.filter_map do |workflow|
+            workflow.name if workflow.engine == Decidim::AccessRequests::Verification::Engine
+          end
+          return if workflow_names.empty?
+
+          org.update!(available_authorizations: (org.available_authorizations + workflow_names).uniq)
         end
       end
     end

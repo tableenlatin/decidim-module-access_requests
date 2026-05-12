@@ -47,7 +47,7 @@ module Decidim::AccessRequests::Verification
         it "creates a new authorization" do
           post :create, params: { handler_handle: "ar_verification" }
           expect(flash[:notice]).not_to be_empty
-          expect(response).to redirect_to("/authorizations")
+          expect(response).to redirect_to(Decidim::Verifications::Engine.routes.url_helpers.authorizations_path)
         end
       end
 
@@ -64,6 +64,19 @@ module Decidim::AccessRequests::Verification
       it "renders the edit template" do
         get :edit, params: { handler_handle: "ar_verification" }
         expect(subject).to render_template("decidim/access_requests/verification/authorizations/edit")
+      end
+
+      context "when the handler is inferred from the mounted workflow path" do
+        before do
+          request.env["SCRIPT_NAME"] = "/en/ar_verification"
+        end
+
+        it "loads the authorization for the mounted workflow" do
+          get :edit
+
+          expect(assigns(:authorization).name).to eq("ar_verification")
+          expect(subject).to render_template("decidim/access_requests/verification/authorizations/edit")
+        end
       end
     end
   end

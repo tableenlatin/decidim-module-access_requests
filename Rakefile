@@ -15,7 +15,7 @@ end
 def fix_babel_config(path)
   Dir.chdir(path) do
     babel_config = "#{Dir.pwd}/babel.config.json"
-    File.delete(babel_config) if File.exist?(babel_config)
+    FileUtils.rm_f(babel_config)
     FileUtils.cp("#{__dir__}/babel.config.json", Dir.pwd)
   end
 end
@@ -24,6 +24,13 @@ desc "Generates a dummy app for testing"
 task test_app: "decidim:generate_external_test_app" do
   fix_babel_config("spec/decidim_dummy_app")
   install_module("spec/decidim_dummy_app")
+
+  # The generated dummy app does not know about this module's workflow. Copy
+  # the initializer so the verification engines are mounted before specs run.
+  FileUtils.cp(
+    "#{__dir__}/spec/support/test_initializer.rb",
+    "#{__dir__}/spec/decidim_dummy_app/config/initializers/decidim_access_requests.rb"
+  )
 end
 
 desc "Generates a development app."

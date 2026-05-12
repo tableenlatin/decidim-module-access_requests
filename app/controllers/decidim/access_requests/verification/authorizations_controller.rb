@@ -16,6 +16,10 @@ module Decidim
           @form = RequestForm.new(handler_handle: authorization_handle)
         end
 
+        def edit
+          enforce_permission_to :create, :authorization, authorization: @authorization
+        end
+
         def create
           enforce_permission_to :create, :authorization, authorization: @authorization
 
@@ -34,10 +38,6 @@ module Decidim
               render :new
             end
           end
-        end
-
-        def edit
-          enforce_permission_to :create, :authorization, authorization: @authorization
         end
 
         private
@@ -65,12 +65,13 @@ module Decidim
           # included as a URL parameter.
           return params[:handler] if params[:action] == "new" && params[:handler].present?
 
-          # When the renew action is called, the authorization handle is the
-          # first part of the URL.
-          return request.path.split("/")[1] if params[:action] == "renew"
+          # Mounted authorization engines carry the workflow handle in the
+          # mount point, e.g. /en/access_requests or /en/admin/access_requests.
+          mounted_workflow_handle
+        end
 
-          # Determine the handle from the request path
-          request.path.split("/").last
+        def mounted_workflow_handle
+          request.script_name.to_s.split("/").last.presence
         end
       end
     end

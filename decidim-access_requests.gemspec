@@ -7,17 +7,18 @@ require "decidim/access_requests/version"
 Gem::Specification.new do |spec|
   spec.name = "decidim-access_requests"
   spec.version = Decidim::AccessRequests.version
-  spec.required_ruby_version = ">= 3.0"
+  spec.required_ruby_version = ">= 3.4"
   spec.authors = ["Antti Hukkanen"]
   spec.email = ["antti.hukkanen@mainiotech.fi"]
 
   spec.summary = "Allows admins to add new access request authorizations."
   spec.description = "Access requests allow platform users to request access on specific features of the platform."
   spec.homepage = "https://github.com/mainio/decidim-module-access_requests"
-  spec.license = "AGPL-3.0"
+  spec.license = "AGPL-3.0-or-later"
 
   spec.files = Dir[
     "{app,config,lib}/**/*",
+    "CHANGELOG.md",
     "LICENSE-AGPLv3.txt",
     "Rakefile",
     "README.md"
@@ -29,6 +30,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "decidim-core", Decidim::AccessRequests.decidim_version
   spec.add_dependency "decidim-verifications", Decidim::AccessRequests.decidim_version
 
-  spec.add_development_dependency "decidim-dev", Decidim::AccessRequests.decidim_version
+  spec.add_development_dependency "decidim-dev", Decidim::AccessRequests.decidim_version # rubocop:disable Gemspec/DevelopmentDependencies
+
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 end

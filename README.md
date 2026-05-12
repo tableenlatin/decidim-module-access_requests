@@ -31,6 +31,10 @@ has given it.
 Development of this gem has been sponsored by the
 [City of Helsinki](https://www.hel.fi/).
 
+## Compatibility
+
+This module targets Decidim `0.32.x`.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -43,6 +47,7 @@ And then execute:
 
 ```bash
 $ bundle
+$ bin/rails db:migrate
 ```
 
 After installation, add this to your verifications initializer:

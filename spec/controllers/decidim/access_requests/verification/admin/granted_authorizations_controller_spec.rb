@@ -5,6 +5,13 @@ require "spec_helper"
 module Decidim::AccessRequests::Verification::Admin
   describe GrantedAuthorizationsController, type: :controller do
     controller described_class do
+      # Re-bind the anonymous controller subclass to the admin engine routes.
+      # RSpec controller specs create an anonymous subclass whose `_routes`
+      # falls back to `Rails.application.routes`; without this include, named
+      # route helpers like `granted_authorizations_path` resolve to polymorphic
+      # URLs instead of the engine path.
+      include Decidim::AccessRequests::Verification::AdminEngine.routes.url_helpers
+
       # Since we cannot customize the route path for automatic detection of
       # the verification method handle, we are using a customized controller to
       # bypass the problem
@@ -88,7 +95,7 @@ module Decidim::AccessRequests::Verification::Admin
 
         it "redirects the user" do
           get :new
-          expect(response).to redirect_to("/admin/users")
+          expect(response).to redirect_to(Decidim::Admin::Engine.routes.url_helpers.users_path)
         end
       end
     end
@@ -106,7 +113,7 @@ module Decidim::AccessRequests::Verification::Admin
         it "redirects with notice message" do
           post :create, params: { user_id: users.sample.id }
           expect(flash[:notice]).not_to be_empty
-          expect(subject).to redirect_to("/granted_authorizations")
+          expect(response).to redirect_to(%r{/granted_authorizations(\?|\z)})
         end
       end
 
@@ -125,7 +132,7 @@ module Decidim::AccessRequests::Verification::Admin
         it "redirects with alert message" do
           post :create, params: { user_id: authorized_user.id }
           expect(flash[:alert]).not_to be_empty
-          expect(subject).to redirect_to("/granted_authorizations")
+          expect(response).to redirect_to(%r{/granted_authorizations(\?|\z)})
         end
       end
     end
@@ -147,7 +154,7 @@ module Decidim::AccessRequests::Verification::Admin
           expect do
             post :destroy, params: { id: authorization_id }
             expect(flash[:notice]).not_to be_empty
-            expect(subject).to redirect_to("/granted_authorizations")
+            expect(response).to redirect_to(%r{/granted_authorizations(\?|\z)})
           end.to change(Decidim::Authorization, :count).by(-1)
         end
       end
@@ -158,7 +165,7 @@ module Decidim::AccessRequests::Verification::Admin
           expect do
             post :destroy, params: { id: authorization_id + 10 }
             expect(flash[:alert]).not_to be_empty
-            expect(subject).to redirect_to("/granted_authorizations")
+            expect(response).to redirect_to(%r{/granted_authorizations(\?|\z)})
           end.not_to change(Decidim::Authorization, :count)
         end
       end

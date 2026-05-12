@@ -15,7 +15,16 @@ module Decidim
         end
 
         def verification_manifest_handle
-          request.path.split("/")[2] if request.path.match? %r{^/admin/}
+          mounted_workflow_handle if admin_request_path?
+        end
+
+        def mounted_workflow_handle
+          request.script_name.to_s.split("/").last.presence
+        end
+
+        def admin_request_path?
+          path_segments = request.path.to_s.split("/").compact_blank
+          %w(0 1).include?(path_segments.index("admin")&.to_s)
         end
       end
     end
