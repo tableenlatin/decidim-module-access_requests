@@ -5,8 +5,8 @@
 .step-bullet{
   &.completed{
     .step-bullet__icon{
-      border-color: $step-completed-color;
-      color: $step-completed-color;
+      border-color: var(--primary);
+      color: var(--primary);
     }
   }
 
@@ -15,9 +15,9 @@
     width: 6em;
     height: 6em;
     margin: 0 auto 1rem;
-    border: 4px solid $step-pending-color;
+    border: 4px solid var(--secondary);
     border-radius: 50%;
-    color: $step-pending-color;
+    color: var(--secondary);
 
     .icon{
       position: relative;
