@@ -1,0 +1,75 @@
+fr:
+  activemodel:
+    models:
+      decidim/access_requests/access_request_confirmed_event: Demande d'accès confirmée
+  decidim:
+    access_requests:
+      verification:
+        admin:
+          granted_authorizations:
+            destroy:
+              error: Une erreur s'est produite lors de la suppression de la vérification.
+              success: La vérification a été supprimée avec succès.
+            index:
+              deleted_user: Utilisateur supprimé
+              membership_number: Numéro d'adhérent
+              name: Nom
+              new: Nouveau
+              nickname: Pseudo
+              pending_authorizations: Demandes en attente
+              remove_access: Retirer l'accès
+              title: Demandes accordées
+              username: Nom d'utilisateur
+            new:
+              actions: Actions
+              created_at: Créé le
+              grant_access: Accorder l'accès
+              name: Nom
+              nickname: Pseudo
+              search: Rechercher
+              users: Utilisateurs
+          pending_authorizations:
+            destroy:
+              error: Une erreur s'est produite lors du rejet de la demande d'accès.
+              success: La demande d'accès a été rejetée avec succès.
+            index:
+              approve_request: Accorder l'accès
+              deleted_user: Utilisateur supprimé
+              granted_authorizations: Demandes accordées
+              membership_number: Numéro d'adhérent
+              name: Nom
+              nickname: Pseudo
+              reject_request: Refuser l'accès
+              title: Demandes en attente
+            update:
+              error: Une erreur s'est produite lors de la vérification de l'accès pour l'utilisateur.
+              success: Accès accordé avec succès à l'utilisateur.
+        authorizations:
+          create:
+            error: Une erreur s'est produite lors de la création de la demande d'accès.
+            success: Demande d'accès créée avec succès.
+          edit:
+            title: Votre demande est en attente
+          new:
+            membership_number_help: Indiquez votre numéro d'adhérent pour qu'un administrateur puisse vérifier votre compte par rapport au registre des membres.
+            title: Demander l'accès
+            send: Envoyer la demande
+          steps:
+            step1:
+              title: Étape 1
+              description: Envoyer la demande d'accès.
+            step2:
+              title: Étape 2
+              description: Attendre l'examen de la demande.
+            step3:
+              title: Étape 3
+              description: >
+                Vous recevrez une notification lorsque l'examen de la demande
+                sera terminé.
+    events:
+      access_requests:
+        confirmed:
+          email_intro: Félicitations ! L'accès à %{verification_name} vous a été accordé.
+          email_outro: Vous avez reçu cette notification parce que votre demande d'accès a été approuvée.
+          email_subject: L'accès à %{verification_name} vous a été accordé !
+          notification_title: L'accès à %{verification_name} vous a été accordé.

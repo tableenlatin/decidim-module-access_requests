@@ -12,6 +12,7 @@ en:
               success: Verification was deleted successfully.
             index:
               deleted_user: Deleted user
+              membership_number: Membership number
               name: Name
               new: New
               nickname: Nickname
@@ -35,6 +36,7 @@ en:
               approve_request: Grant access
               deleted_user: Deleted user
               granted_authorizations: Granted requests
+              membership_number: Membership number
               name: Name
               nickname: Nickname
               reject_request: Reject access
@@ -49,6 +51,7 @@ en:
           edit:
             title: Your request is pending
           new:
+            membership_number_help: Enter your membership number so an admin can verify your account against the membership roster.
             title: Request access
             send: Send request
           steps:

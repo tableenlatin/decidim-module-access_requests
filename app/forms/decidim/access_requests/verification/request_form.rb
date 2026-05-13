@@ -7,6 +7,7 @@ module Decidim
       # access requests.
       class RequestForm < AuthorizationHandler
         attribute :handler_handle, String
+        attribute :membership_number, String
 
         validates :handler_handle,
                   presence: true,
@@ -15,9 +16,14 @@ module Decidim
                       form.current_organization.available_authorizations
                     }
                   }
+        validates :membership_number, presence: true
 
         def handler_name
           handler_handle
+        end
+
+        def metadata
+          super.merge(membership_number:)
         end
       end
     end

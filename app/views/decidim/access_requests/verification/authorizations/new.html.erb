@@ -13,6 +13,10 @@
         <%= decidim_form_for(@form, url: authorization_path) do |form| %>
           <%= form.hidden_field :handler_handle %>
 
+          <%= form.text_field :membership_number,
+                              required: true,
+                              help_text: t(".membership_number_help") %>
+
           <div class="actions">
             <%= form.submit t(".send"), class: "button expanded", "data-disable-with" => "#{t('.send')}..." %>
           </div>

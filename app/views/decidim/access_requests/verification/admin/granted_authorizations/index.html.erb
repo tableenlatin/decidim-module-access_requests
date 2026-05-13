@@ -12,6 +12,7 @@
         <tr>
           <th><%= t(".name") %></th>
           <th><%= t(".nickname") %></th>
+          <th><%= t(".membership_number") %></th>
           <th></th>
         </tr>
       </thead>
@@ -32,6 +33,7 @@
                 <%= authorization.user.nickname %>
               <% end %>
             </td>
+            <td><%= authorization.metadata&.dig("membership_number") %></td>
             <td class="table-list__actions">
               <% unless authorization.user.deleted? %>
                 <%= icon_link_to "person",
