@@ -49,10 +49,16 @@ module Decidim
           attr_reader :authorization, :form, :session
 
           def send_notification
+            # The notification's `resource` must respond to `can_participate?`
+            # (Decidim::Notification#can_participate? -> resource.can_participate?(user)).
+            # Decidim::Authorization does not implement it, which crashes the
+            # /notifications page. Use the confirmed user as the resource — User
+            # implements can_participate?, and the event already resolves its
+            # URL/path from extra["user_nickname"], not from `resource`.
             Decidim::EventsManager.publish(
               event: "decidim.events.access_requests.confirmed",
               event_class: AccessRequestConfirmedEvent,
-              resource: authorization,
+              resource: authorization.user,
               affected_users: [authorization.user],
               extra: {
                 user_name: authorization.user.name,

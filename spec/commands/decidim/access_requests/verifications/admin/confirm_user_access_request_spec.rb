@@ -38,7 +38,7 @@ module Decidim
               expect(Decidim::EventsManager).to receive(:publish).with(
                 event: "decidim.events.access_requests.confirmed",
                 event_class: Decidim::AccessRequests::AccessRequestConfirmedEvent,
-                resource: authorization,
+                resource: authorization.user,
                 affected_users: [authorization.user],
                 extra: {
                   user_name: authorization.user.name,
