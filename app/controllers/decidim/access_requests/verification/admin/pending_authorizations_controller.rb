@@ -30,7 +30,7 @@ module Decidim
               end
 
               on(:invalid) do
-                flash.now[:alert] = t("pending_authorizations.update.error", scope: "decidim.access_requests.verification.admin")
+                flash[:alert] = t("pending_authorizations.update.error", scope: "decidim.access_requests.verification.admin")
                 redirect_to pending_authorizations_path
               end
             end
@@ -46,7 +46,7 @@ module Decidim
               end
 
               on(:invalid) do
-                flash.now[:alert] = t("pending_authorizations.destroy.error", scope: "decidim.access_requests.verification.admin")
+                flash[:alert] = t("pending_authorizations.destroy.error", scope: "decidim.access_requests.verification.admin")
                 redirect_to pending_authorizations_path
               end
             end

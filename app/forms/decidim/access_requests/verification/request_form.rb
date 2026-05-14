@@ -36,7 +36,10 @@ module Decidim
         # - for granted#create the admin grants without going through the user
         #   workflow, so there is no value to validate against.
         def require_membership_number?
-          !context.fetch(:admin_context, false)
+          # `context` is an OpenStruct in Decidim 0.32, not a Hash; unknown
+          # attributes return nil, so `!context.admin_context` is true when
+          # the flag is absent (public flow) and false when admin sets it.
+          !context.admin_context
         end
       end
     end
