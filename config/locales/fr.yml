@@ -2,12 +2,11 @@ fr:
   activemodel:
     attributes:
       request:
-        membership_number: Numéro d'adhérent
+        membership_number: Numéro de membre
     models:
       decidim/access_requests/access_request_confirmed_event: Demande d'accès confirmée
   decidim:
     access_requests:
-      user_facing_name: Demande d'accès
       verification:
         admin:
           granted_authorizations:
@@ -16,7 +15,7 @@ fr:
               success: La vérification a été supprimée avec succès.
             index:
               deleted_user: Utilisateur supprimé
-              membership_number: Numéro d'adhérent
+              membership_number: Numéro de membre
               name: Nom
               new: Nouveau
               nickname: Pseudo
@@ -40,7 +39,7 @@ fr:
               approve_request: Accorder l'accès
               deleted_user: Utilisateur supprimé
               granted_authorizations: Demandes accordées
-              membership_number: Numéro d'adhérent
+              membership_number: Numéro de membre
               name: Nom
               nickname: Pseudo
               reject_request: Refuser l'accès
@@ -55,7 +54,7 @@ fr:
           edit:
             title: Votre demande est en attente
           new:
-            membership_number_help: Indiquez votre numéro d'adhérent pour qu'un administrateur puisse vérifier votre compte par rapport au registre des membres.
+            membership_number_help: Indiquez votre numéro de membre pour qu'un administrateur puisse vérifier votre compte par rapport au registre des membres.
             title: Demander l'accès
             send: Envoyer la demande
           steps:
