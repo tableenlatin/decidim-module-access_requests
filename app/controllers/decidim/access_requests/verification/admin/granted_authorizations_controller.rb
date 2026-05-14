@@ -44,7 +44,7 @@ module Decidim
 
             @form = RequestForm.new(
               handler_handle: verification_manifest.name
-            ).with_context(current_organization: current_organization)
+            ).with_context(current_organization: current_organization, admin_context: true)
 
             ConfirmUserAccessRequest.call(authorization, @form, session) do
               on(:ok) do

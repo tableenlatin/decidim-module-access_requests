@@ -19,8 +19,9 @@ module Decidim
             enforce_permission_to :edit, :authorization, authorization: authorization
 
             @form = RequestForm.new(
-              handler_handle: verification_manifest.name
-            ).with_context(current_organization: current_organization)
+              handler_handle: verification_manifest.name,
+              membership_number: authorization.metadata&.dig("membership_number")
+            ).with_context(current_organization: current_organization, admin_context: true)
 
             ConfirmUserAccessRequest.call(authorization, @form, session) do
               on(:ok) do

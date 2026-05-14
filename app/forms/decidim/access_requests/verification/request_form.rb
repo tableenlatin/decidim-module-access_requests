@@ -16,7 +16,7 @@ module Decidim
                       form.current_organization.available_authorizations
                     }
                   }
-        validates :membership_number, presence: true
+        validates :membership_number, presence: true, if: :require_membership_number?
 
         def handler_name
           handler_handle
@@ -24,6 +24,19 @@ module Decidim
 
         def metadata
           super.merge(membership_number:)
+        end
+
+        private
+
+        # Membership number is required when the user submits the form (public
+        # access request flow). It is skipped when admin actions re-build the
+        # form (confirm a pending request, grant access directly) because:
+        # - for pending#update the value already lives on the persisted
+        #   authorization metadata and is passed through;
+        # - for granted#create the admin grants without going through the user
+        #   workflow, so there is no value to validate against.
+        def require_membership_number?
+          !context.fetch(:admin_context, false)
         end
       end
     end
