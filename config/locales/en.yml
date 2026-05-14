@@ -1,5 +1,8 @@
 en:
   activemodel:
+    attributes:
+      request:
+        membership_number: Membership number
     models:
       decidim/access_requests/access_request_confirmed_event: Access request confirmed
   decidim:

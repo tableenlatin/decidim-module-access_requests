@@ -1,5 +1,8 @@
 fr:
   activemodel:
+    attributes:
+      request:
+        membership_number: Numéro d'adhérent
     models:
       decidim/access_requests/access_request_confirmed_event: Demande d'accès confirmée
   decidim:
