@@ -1,7 +1,9 @@
-<div class="text-center py-10">
-  <h1 class="title-decorator inline-block text-left">
-    <%= t(".title") %>
-  </h1>
-</div>
+<%= render layout: "layouts/decidim/shared/layout_center" do %>
+  <div class="text-center py-10">
+    <h1 class="title-decorator inline-block text-left">
+      <%= t(".title") %>
+    </h1>
+  </div>
 
-<%= render "steps", active: [0, 1] %>
+  <%= render "steps", active: [0, 1] %>
+<% end %>
