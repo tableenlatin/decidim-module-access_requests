@@ -7,6 +7,7 @@ en:
       decidim/access_requests/access_request_confirmed_event: Access request confirmed
   decidim:
     access_requests:
+      user_facing_name: Access request
       verification:
         admin:
           granted_authorizations:

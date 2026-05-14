@@ -16,6 +16,14 @@ module Decidim
           root to: "authorizations#new"
         end
 
+        initializer "decidim_access_requests.verifications_helper_override" do
+          config.to_prepare do
+            ::Decidim::Verifications::ApplicationHelper.prepend(
+              ::Decidim::AccessRequests::Verifications::ApplicationHelperOverride
+            )
+          end
+        end
+
         def load_seed
           # Enable the authorization workflows provided by this engine.
           org = Decidim::Organization.first
