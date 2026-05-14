@@ -19,9 +19,9 @@ fr:
               name: Nom
               new: Nouveau
               nickname: Pseudo
-              pending_authorizations: Demandes en attente
+              pending_authorizations: Accès en attente
               remove_access: Retirer l'accès
-              title: Demandes accordées
+              title: Accès accordés
               username: Nom d'utilisateur
             new:
               actions: Actions
@@ -38,12 +38,12 @@ fr:
             index:
               approve_request: Accorder l'accès
               deleted_user: Utilisateur supprimé
-              granted_authorizations: Demandes accordées
+              granted_authorizations: Accès accordés
               membership_number: Numéro de membre
               name: Nom
               nickname: Pseudo
               reject_request: Refuser l'accès
-              title: Demandes en attente
+              title: Accès en attente
             update:
               error: Une erreur s'est produite lors de la vérification de l'accès pour l'utilisateur.
               success: Accès accordé avec succès à l'utilisateur.

@@ -19,9 +19,9 @@ en:
               name: Name
               new: New
               nickname: Nickname
-              pending_authorizations: Pending requests
+              pending_authorizations: Pending access
               remove_access: Remove access
-              title: Granted requests
+              title: Granted access
               username: Username
             new:
               actions: Actions
@@ -38,12 +38,12 @@ en:
             index:
               approve_request: Grant access
               deleted_user: Deleted user
-              granted_authorizations: Granted requests
+              granted_authorizations: Granted access
               membership_number: Membership number
               name: Name
               nickname: Nickname
               reject_request: Reject access
-              title: Pending requests
+              title: Pending access
             update:
               error: There was an error verifying access for the user.
               success: Access successfully granted for the user.
