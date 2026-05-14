@@ -15,6 +15,18 @@ module Decidim
 
           root to: "pending_authorizations#index"
         end
+
+        initializer "decidim_access_requests.admin_workflows_menu" do
+          Decidim.menu :workflows_menu do |menu|
+            next unless current_organization&.available_authorizations&.include?("access_requests")
+
+            granted_path = decidim_admin_access_requests.granted_authorizations_path
+            menu.add_item :access_requests_granted,
+                          I18n.t("decidim.access_requests.verification.admin.granted_authorizations.index.title"),
+                          granted_path,
+                          active: is_active_link?(granted_path)
+          end
+        end
       end
     end
   end
