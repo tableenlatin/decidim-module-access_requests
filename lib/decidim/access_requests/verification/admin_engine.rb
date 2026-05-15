@@ -20,11 +20,25 @@ module Decidim
           Decidim.menu :workflows_menu do |menu|
             next unless current_organization&.available_authorizations&.include?("access_requests")
 
+            menu.remove_item "access_requests"
+
+            pending_path = decidim_admin_access_requests.pending_authorizations_path
+            menu.add_item :access_requests_pending,
+                          I18n.t("decidim.access_requests.verification.admin.pending_authorizations.index.title"),
+                          pending_path,
+                          active: is_active_link?(pending_path, :exclusive)
+
             granted_path = decidim_admin_access_requests.granted_authorizations_path
             menu.add_item :access_requests_granted,
                           I18n.t("decidim.access_requests.verification.admin.granted_authorizations.index.title"),
                           granted_path,
-                          active: is_active_link?(granted_path)
+                          active: is_active_link?(granted_path, :exclusive)
+
+            new_granted_path = decidim_admin_access_requests.new_granted_authorization_path
+            menu.add_item :access_requests_new,
+                          I18n.t("decidim.access_requests.verification.admin.granted_authorizations.index.new"),
+                          new_granted_path,
+                          active: is_active_link?(new_granted_path, :exclusive)
           end
         end
       end
