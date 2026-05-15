@@ -69,6 +69,10 @@ fr:
               description: >
                 Vous recevrez une notification lorsque l'examen de la demande
                 sera terminé.
+    authorization_handlers:
+      access_requests:
+        fields:
+          membership_number: Numéro de membre
     events:
       access_requests:
         confirmed:

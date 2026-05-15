@@ -69,6 +69,10 @@ en:
               description: >
                 You will get notified once the request review has been
                 completed.
+    authorization_handlers:
+      access_requests:
+        fields:
+          membership_number: Membership number
     events:
       access_requests:
         confirmed:
